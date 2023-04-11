@@ -3,12 +3,27 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>memory game</title>
     <link rel="stylesheet" href="memory.css">
+    <link rel="stylesheet" href="https://fonts.google.com/specimen/Tilt Prism">
+    <style>  @import url('https://fonts.googleapis.com/css2?family=Tilt+Prism&display=swap');</style>
   </head>
   <body>
-    <h1 class="title">Memory Game By yonatan</h1>
-    <div id="board"></div>
-    <script src="memory-game.js"></script>
+    <script src="memory_game.js"></script>
+    <div class="game">
+      <h1 class="title">Memory Game</h1>
+      <button><h1>Start</h1></button>
+      <div class="progress">
+        <div class="moves"><h1>Moves:<br><center><span style="color: white; ">15</span></center></h1></div>
+        <div class="stopWatch"><h1><center>Stop<br>Watch:<br><span style="color: white; ">00:00</span></center></h1></div>
+      </div>
+    <div id="board">
+      <div class="cardBack">?</div>
+      <div class="cardBack">?</div>
+      <div class="cardBack">?</div>
+      <div class="cardBack">?</div>
+      <div class="cardBack">?</div>
+    </div>
+  </div>
   </body>
 </html>
