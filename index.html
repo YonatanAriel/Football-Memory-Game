@@ -9,34 +9,20 @@
     <style>  @import url('https://fonts.googleapis.com/css2?family=Tilt+Prism&display=swap');</style>
   </head>
   <body>
-    <script src="memory_game.js"></script>
+
     <div class="game">
-      <h1 class="title">Memory Game</h1>
-      <button><h1>Start</h1></button>
+        <div><h1 class="title"><center>Memory Game</center></h1></div>
       <div class="progress">
-        <div class="moves"><h1>Moves:<br><center><span style="color: white; ">15</span></center></h1></div>
-        <div class="stopWatch"><h1><center>Time:<br><span style="color: white; ">00:00</span></center></h1></div>
+        <div id="moves"><h1><center>Moves:<br><span style="color: white; ">15</span></center></h1></div>
+        <div id="stopWatch"><h1><center>Time:<br><span style="color: white; ">00:00</span></center></h1></div>
       </div>
     <div id="board">
-      <div id="cardFront"><img src="ron.jpg" alt="player" class="photos"></div>
-      <div class="cardBack">?</div>
-      <div class="cardBack">?</div>
-      <div class="cardBack">?</div>
-      <div class="cardBack">?</div>
-      <div class="cardBack">?</div>
-      <div class="cardBack">?</div>
-      <div class="cardBack">?</div>
-      <div class="cardBack">?</div>
-      <div class="cardBack">?</div>
-      <div class="cardBack">?</div>
-      <div class="cardBack">?</div>
-      <div class="cardBack">?</div>
-      <div class="cardBack">?</div>
-      <div class="cardBack">?</div>
-      <div class="cardBack">?</div>
-      <div class="cardBack">?</div>
-      <div class="cardBack">?</div>
+      <div class="cardFront"><img src="ron.jpg" alt="player" class="photos"></div> 
+      <!-- <div class="cardBack">?</div>  -->
+    
     </div>
+    <button><h1 id="h1Button"><center>Start</center></h1></button>
   </div>
+  <script src="memory_game.js"></script>
   </body>
 </html>

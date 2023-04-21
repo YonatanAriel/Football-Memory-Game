@@ -1,7 +1,12 @@
-let arr1 = ["a","b","c","d","e","f","g","h","i"];
-let userChoose = 13 //with how many cards the user want to play (minimum 4 - max 18?)//need to let him choose levels or just even numbers
+let arr1 = [{index:"0$",imgSrc:"ron.jpg"},{index:"1$",imgSrc:"ron.jpg"},{index:"2$",imgSrc:"ron.jpg"},{index:"3$",imgSrc:"ron.jpg"},{index:"4$",imgSrc:"ron.jpg"},{index:"5$",imgSrc:"ron.jpg"},{index:"6$",imgSrc:"ron.jpg"},{index:"7$",imgSrc:"ron.jpg"},{index:"8$",imgSrc:"ron.jpg"}];
+let userChoose = 14 //with how many cards the user want to play (minimum 4 - max 18?)//need to let him choose levels or just even numbers
+arr4 = [...arr1]
+let r = arr4.map(v => v = v.index.charAt(0) + "*")
+console.log(arr1)
+console.log(r)
 let arr2 = arr1.slice(0,userChoose / 2).concat(arr1.slice(0,userChoose / 2))
-console.log(arr1,arr2)
+0,1,2,0,1,2
+// console.log(arr1)
 let startGame = false //if the user press start - startGame = true
 //function that suffle the second array
 function shuffle(arr){
@@ -15,6 +20,7 @@ function shuffle(arr){
     }
     return arr
 }
+
 // )    (זה בגלל שבלולאת פור עשיתי length * 2) נקראת הדף בכרום כותב "אוי לא" ולא טוען את הדף כל פעם שפונקציית shuffle (status breakpoint)
 //func -  makes new array made from stars in the same length of the suffle array
 function arrToStar(arr){
@@ -56,18 +62,18 @@ function moves(moves){
 let seconds = 0;
 let minutes = 0;
 //stopwatch
-function stopWatch(){
-    if(minutes == 99 && seconds > 58){
-        return "too much time past, you lost"
-    }
-    else if(seconds == 60){
-        minutes++
-        seconds = 0
-    }
-    seconds++  
-    console.log(`${minutes}:${seconds}`) 
-}
-setInterval(stopWatch,1000)
+// function stopWatch(){
+//     if(minutes == 99 && seconds > 58){
+//         return "too much time past, you lost"
+//     }
+//     else if(seconds == 60){
+//         minutes++
+//         seconds = 0
+//     }
+//     seconds++  
+//     console.log(`${minutes}:${seconds}`) 
+// }
+// setInterval(stopWatch,1000)
 //setInterval(bb,1000)
 //setTimeOut()?
 //scoring method
@@ -82,3 +88,59 @@ function score(){
        return "you won! you can do it faster next time"
     }
 }
+let createCard = () => {
+    let arr = [];
+for(v of arr2){
+    card = document.createElement("div");
+    card.className = "cardBack";
+    card.innerText = "?";
+    // card.addEventListener("click",flip(Event))
+    card.id = v.index;
+    id = card.id;
+    img = document.createElement("img");
+    img.src = v.imgSrc;
+    card.onclick = flip;
+    // img.width = "0px";
+    // img.height = "0px";
+    console.log(arr)
+    if(checkIfImgIdAlreadtExist(arr)){
+        img.id = id + "*";
+    }
+    else{
+        img.id = id + "$";
+    }
+    card.append(img);
+    console.log(img.id)
+    // card.('click',funOnClick)
+    document.getElementById("board").append(card)
+}
+}
+createCard()
+function checkIfImgIdAlreadtExist(arr) {//func to make diff id for img with the same index
+    for(v of arr){
+        if(v == id){
+          return true
+        }
+    }
+    arr.push(id)
+    return false
+}
+// document.getElementsByClassName("cardBack").forEach(element => {
+//     element.onClick
+//     element.addEvemtLisenr
+// }); = flip
+function flip(event){
+    card = event.target;
+    card.innerText = "";
+    card.className = "cardFront";
+    console.log(card)
+    img1 = document.getElementById(card.id + "$")
+    // img1.style.width = "80px";
+    // img1.style.height = "80px";
+    img1.alt = "player"
+    img1.className = "photos"
+    console.log(img1);
+}
+// const init =()=>{
+//     const board = document.getElementById("board")
+// }
