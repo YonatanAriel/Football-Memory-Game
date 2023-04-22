@@ -45,8 +45,10 @@ body{
   flex-direction: column;
 }
 .cardBack{
-    /* transform: rotateY(180deg); */
-    /* align-items: center; */
+    transform: rotateY(0deg);  
+    transform-style:preserve-3d; 
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    /* transform-origin: center center; */
     justify-content: center;
     overflow: hidden;
     width: 14%;
@@ -62,7 +64,6 @@ body{
     text-align: center; 
     font-size: 100px;
     cursor: pointer;
-    transition: all 0.1s ease-in-out;
    /* height: 0; 
     padding-top: 14%; 
     width:14%;if i want to make square no matter what */
@@ -74,7 +75,12 @@ body{
             -5px -5px 10px rgba(1, 20, 3, 0.9); 
 } 
 .cardFront{
+     transform: rotateY(180deg);  
+    transform-style:preserve-3d; 
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); 
+    /* transform-origin: center; */
     justify-content: center;
+    /* align-items: center; */
     overflow: hidden;
     width: 14%;
     height: 25%;
@@ -87,11 +93,15 @@ body{
     box-shadow:  5px 5px 33px #0d0d0d,
                  -5px -5px 33px #04360f;
 }
+/* .flipped{
+
+} */
 .backPhotos{
     width: 0;
     height: 0;
 }
 .frontPhotos{
+    scroll-behavior: auto;
     width: 90%;
     height: 90%;
     border-radius: 10px;

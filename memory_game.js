@@ -72,17 +72,15 @@ let createCard = () => {
 for(i in shufarray){
     card = document.createElement("div");
     card.className = "cardBack";
-    card.id = i
+    card.id = i;
     card.innerText = "?";
     // card.addEventListener("click",flip(Event))
     img = document.createElement("img");
     img.src = shufarray[i].imgSrc;
     card.src = shufarray[i].imgSrc;
-    img.alt = shufarray[i].imgSrc;
     img.className = "backPhotos";
     card.onclick = handleClick;
     card.append(img);
-    console.log(card)
     //card.('click',funOnClick)
     document.getElementById("board").append(card)
 }
@@ -92,13 +90,13 @@ let flippedArr = [] //arr that gets the flipped cards
 function flip(event){
     card = event.target;
     card.className = "cardFront";
+    // card.classList.add("cardFront","flipped")//זה הרס את האפקט!!!!
     img = document.getElementById(card.id).querySelector("img");
     img.className = "frontPhotos";
-    flippedArr.push(card.id)
+    flippedArr.push(card.id);
     card.onclick = null;
-    console.log(flippedArr)
     if(flippedArr.length == 2){
-        card2 = document.getElementById(flippedArr[0])
+        card2 = document.getElementById(flippedArr[0]);
         if(document.getElementById(flippedArr[0]).src !== document.getElementById(flippedArr[1]).src){ //check if the cards match
            //show the cards for a few seconds and then show the back
            document.querySelectorAll(".cardBack").forEach(card => {
@@ -117,6 +115,7 @@ function flip(event){
            },800)
         }
         else{
+            //sound effect
             card.onclick = null;
             card2.onclick = null;
             if(document.querySelectorAll(".cardBack").length == 0){
