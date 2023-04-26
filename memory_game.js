@@ -1,6 +1,9 @@
 let arr1 = [{index:"0",imgSrc:"b20.jpg"},{index:"1",imgSrc:"b10.jpg"},{index:"2",imgSrc:"b0.jpg"},{index:"3",imgSrc:"b1.jpg"},{index:"4",imgSrc:"b2.jpg"},{index:"5",imgSrc:"b3.jpg"},{index:"6",imgSrc:"b4.jpg"},{index:"7",imgSrc:"b5.jpg"},{index:"8",imgSrc:"b6.jpg"},{index:"9",imgSrc:"b7.jpg"},{index:"10",imgSrc:"b8.jpg"},{index:"11",imgSrc:"b9.jpg"},
-,{index:"12",imgSrc:"b10.jpg"},{index:"13",imgSrc:"b11.jpg"},{index:"14",imgSrc:"b12.jpg"},{index:"15",imgSrc:"b13.jpg"},{index:"16",imgSrc:"b14.jpg"},{index:"17",imgSrc:"b15.jpg"},{index:"18",imgSrc:"b16.jpg"},{index:"19",imgSrc:"b17.jpg"},{index:"20",imgSrc:"b18.jpg"},{index:"21",imgSrc:"b19.jpg"}];
-let userChoose = 18//with how many cards the user want to play (minimum 4 - max 18?)//need to let him choose levels or just even numbers
+{index:"12",imgSrc:"b24.jpg"},{index:"13",imgSrc:"b11.jpg"},{index:"14",imgSrc:"b23.webp"},{index:"15",imgSrc:"b13.jpg"},{index:"16",imgSrc:"b14.jpg"},{index:"17",imgSrc:"b15.jpg"},{index:"18",imgSrc:"b16.jpg"},{index:"19",imgSrc:"b17.jpg"},{index:"20",imgSrc:"b18.jpg"},{index:"21",imgSrc:"b19.jpg"},{index:"22",imgSrc:"b21.webp"},{index:"23",imgSrc:"b22.webp"}];
+const difficulty = localStorage.getItem("difficulty");
+const cardAmount = localStorage.getItem("cardAmount");
+let userChoose = cardAmount;
+console.log(userChoose)//with how many cards the user want to play (minimum 4 - max 18?)//need to let him choose levels or just even numbers
 let arr2 = arr1.slice(0,userChoose / 2).concat(arr1.slice(0,userChoose / 2))
 // console.log(arr1)
 let startGame = false //if the user press start - startGame = true
@@ -80,9 +83,22 @@ for(i in shufarray){
     card.src = shufarray[i].imgSrc;
     img.className = "backPhotos";
     card.onclick = handleClick;
+    board = document.getElementById("board");
+    if(cardAmount == "48"){
+         board.style.height = "97%";
+        board.style.gap = "1%";
+        board.style.marginTop = "-29.3%"
+        board.style.flexDirection = "row"
+        card.style.width = "11%";
+        card.style.height = "15.35%";
+        card.style.margin = "0";
+        card.style.fontSize = "80px";
+        // backCardClass = document.querySelector(".cardBack")
+    }
     card.append(img);
     //card.('click',funOnClick)
-    document.getElementById("board").append(card)
+    board.append(card)
+    // document.getElementById("board").append(card)
 }
 }
 createCard()
@@ -90,6 +106,7 @@ let flippedArr = [] //arr that gets the flipped cards
 function flip(event){
     card = event.target;
     card.className = "cardFront";
+    card.style.fontSize = "0";/* */
     // card.classList.add("cardFront","flipped")//זה הרס את האפקט!!!!
     img = document.getElementById(card.id).querySelector("img");
     img.className = "frontPhotos";
@@ -107,6 +124,7 @@ function flip(event){
            img.className = "backPhotos"
            card.className = "cardBack"
            card2.className = "cardBack"
+           card.style.fontSize = "80px", card2.style.fontSize = "80px";/* */
            card2.querySelector("img").className = "backPhotos"
            document.querySelectorAll(".cardBack").forEach(ard => {
            ard.onclick = handleClick;
