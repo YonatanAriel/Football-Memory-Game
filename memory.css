@@ -24,7 +24,7 @@ body{
 }
 #moves{
     margin-right: 83%;
-    margin-top:19%;
+    margin-top:18.3%;
 }
 #stopWatch{
     margin-top: -11%;
@@ -33,15 +33,15 @@ body{
 #board {
   position: fixed;
   display: flex;
-  gap: 3%; 
   flex-wrap: wrap;
   justify-content: center; 
   align-items:center; 
-  height: 80%;
+  height: 95%;
   width: 67%;
   margin-left: 16.5%;
   overflow-wrap: normal;
-  margin-top: -25%;
+  /* margin-top: -29%; */
+  margin-top: -28%;
   flex-direction: column;
 }
 .cardBack{
@@ -52,10 +52,10 @@ body{
     transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
     justify-content: center;
     overflow: hidden;
+    height: 20.3%;
     width: 14%;
-    height: 25%;
+    margin: 1.4% 0%;
     background-color: rgba(253, 253, 253, 0.045);  
-    margin:0.6% 0%;  
     border-radius: 10px;
     text-shadow: 5px 5px 20px rgb(2, 2, 2),
     -5px -5px 20px rgb(1, 16, 3); 
@@ -68,31 +68,33 @@ body{
     padding-top: 14%; 
     width:14%;*//*if i want to make square no matter what*/
 }
-/* cardBack: */
 .cardBack:hover {
     transform: scale(1.1);
     box-shadow: 5px 5px 10px rgba(1, 20, 3, 0.9),
             -5px -5px 10px rgba(1, 20, 3, 0.9); 
 } 
-/* .cardFront{
+.cardFront{
     transform: rotateY(180deg); 
     transform-style:preserve-3d; 
-    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);  */
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);  
     /* transform-origin: center; */
-    /* justify-content: center; */
-    /* align-items: center; */
-    /* overflow: hidden;
-    width: 14%;
+    justify-content: center; 
+    align-items: center;
+    overflow: hidden;
+    /* width: 14%;
     height: 25%;
-    margin:0.6% 0%;  
+    margin:0.6% 0%;   */
+    height: 20.3%;
+    width: 14%;
+    margin: 1.4% 0%;
     border-radius: 10px;
-    font-size: 0; */
+    font-size: 0;
     /* height: 25%;
     width: 14%;      */
     /* margin:0% 1.2%; */
-    /* box-shadow:  5px 5px 33px #0d0d0d,
+    box-shadow:  5px 5px 33px #0d0d0d,
                  -5px -5px 33px #04360f;
-} */
+}
 .backPhotos{
     width: 0;
     height: 0;
@@ -139,60 +141,3 @@ span, .cardBack{
     box-shadow:  5px 5px 33px #0d0d0d,
     -5px -5px 33px #04360f;
 }
- #board {
-   /* position: fixed;
-    display: flex; */
-    /*gap: 1%;*/ /*  */
-    /* flex-wrap: wrap;
-    justify-content: center; 
-    align-items:center;  */
-    /*height: 97%;*/ /*  */
-    /*width: 67%;
-    margin-left: 16.5%;
-    overflow-wrap: normal;*/
-   /* margin-top: -29.3%;*//**/
-    /*flex-direction: row;*//**/
-  }
-  .cardBack{
-    /* white-space:nowrap; */
-    /* transform-origin: center center; */
-    /* transform: rotateY(0deg);  
-    transform-style:preserve-3d; 
-    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-    justify-content: center;
-    overflow: hidden;
-    width: 11%;
-    height: 15.35%;
-    background-color: rgba(253, 253, 253, 0.045);   
-    margin:0;
-    border-radius: 10px;
-    text-shadow: 5px 5px 20px rgb(2, 2, 2),
-    -5px -5px 20px rgb(1, 16, 3); 
-    box-shadow:  5px 5px 33px #0d0d0d,
-                 -5px -5px 33px #04360f;
-    text-align: center; 
-    font-size: 80px;
-    cursor: pointer; */
-   /* height: 0; 
-    padding-top: 14%; 
-    width:14%;if i want to make square no matter what */
-}
-.cardFront{
-    transform: rotateY(180deg); 
-    transform-style:preserve-3d; 
-    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); 
-    /* transform-origin: center; */
-    justify-content: center; 
-    align-items: center;
-    overflow: hidden;
-    width: 11%;
-    height: 15.35%;
-    margin:0;  
-    border-radius: 10px;
-    font-size: 0;  
-    /* height: 25%;
-    width: 14%;      */
-    /* margin:0% 1.2%; */
-    box-shadow:  5px 5px 33px #0d0d0d,
-                 -5px -5px 33px #04360f;
-} 

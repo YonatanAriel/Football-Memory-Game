@@ -1,12 +1,18 @@
 let arr1 = [{index:"0",imgSrc:"b20.jpg"},{index:"1",imgSrc:"b10.jpg"},{index:"2",imgSrc:"b0.jpg"},{index:"3",imgSrc:"b1.jpg"},{index:"4",imgSrc:"b2.jpg"},{index:"5",imgSrc:"b3.jpg"},{index:"6",imgSrc:"b4.jpg"},{index:"7",imgSrc:"b5.jpg"},{index:"8",imgSrc:"b6.jpg"},{index:"9",imgSrc:"b7.jpg"},{index:"10",imgSrc:"b8.jpg"},{index:"11",imgSrc:"b9.jpg"},
 {index:"12",imgSrc:"b24.jpg"},{index:"13",imgSrc:"b11.jpg"},{index:"14",imgSrc:"b23.webp"},{index:"15",imgSrc:"b13.jpg"},{index:"16",imgSrc:"b14.jpg"},{index:"17",imgSrc:"b15.jpg"},{index:"18",imgSrc:"b16.jpg"},{index:"19",imgSrc:"b17.jpg"},{index:"20",imgSrc:"b18.jpg"},{index:"21",imgSrc:"b19.jpg"},{index:"22",imgSrc:"b21.webp"},{index:"23",imgSrc:"b22.webp"}];
-const difficulty = localStorage.getItem("difficulty");
+const difficulty = localStorage.getItem("difficulty"); //if i'll do const it wouldn't let me do if(difficulty == "somthing") bacause it's shuld alwyas have the same value 
 const cardAmount = localStorage.getItem("cardAmount");
 let userChoose = cardAmount;
-console.log(userChoose)//with how many cards the user want to play (minimum 4 - max 18?)//need to let him choose levels or just even numbers
 let arr2 = arr1.slice(0,userChoose / 2).concat(arr1.slice(0,userChoose / 2))
-// console.log(arr1)
-let startGame = false //if the user press start - startGame = true
+let moves = 0, seconds = 0 , minutes = 0;
+if(difficulty == "nightmare"){
+    if(cardAmount == "48"){
+        moves = 200, minutes = 5, seconds = 0;    
+    }
+    else{
+        moves = 70, minutes = 2, seconds = 0;
+    }
+}
 //function that suffle the second array
 function shuffle(arr) {
     for (let j = 0; j < 10 + Math.random() * 10; j++) {
@@ -33,43 +39,39 @@ function shuffle(arr) {
 // )    (זה בגלל שבלולאת פור עשיתי length * 2) נקראת הדף בכרום כותב "אוי לא" ולא טוען את הדף כל פעם שפונקציית shuffle (status breakpoint)
 //func -  makes new array made from stars in the same length of the suffle array
 let shufarray = shuffle(arr2);
-console.log(shufarray)
 //    // setTimeout(starSuffleArr, 5000)hide() //show() delay() fadeout() //need to study "jQuery"
-// }
 //func - to count how may moves the user did
-let moves = 0;
-function movesCounter(){
-    moves++
-    document.getElementById("movesText").innerText = `${moves}`
+function movesCounter(countingDown){
+    if(countingDown){
+        moves-- ;
+    }
+    else{
+        moves++ ;
+    }
+    if(moves == 0){
+        //you lost func
+    }
+    document.getElementById("movesText").innerText = `${moves}` ;
 }
-let seconds = 0 , minutes = 0;
 //stopwatch
 function stopWatch(){
-    if(minutes == 99 && seconds > 58){
-        return "too much time past, you lost"
+    if(difficulty == "nightmare"){//set timer
+        if(seconds == 0){
+            seconds = 60 ;
+            minutes-- ;
+        }
+        seconds-- ;
     }
-    else if(seconds == 59){
-        seconds = -1
-        minutes++   
-    }
-    seconds++  
-    document.getElementById("clock").innerText = `${minutes}:${seconds}` 
+    else{//set stopwatch
+        if(seconds == 59){
+            seconds = -1 ;
+            minutes++ ;
+        }
+        seconds++ ;
+    } 
+    document.getElementById("clock").innerText = `${minutes}:${seconds}` ;
 }
-setInterval(stopWatch,1000)
-// setInterval(bb,1000)
-//setTimeOut()?
-//scoring method
-// function score(){
-//     if(timer < 200 && moves < 10){
-//        return "amazing"
-//     }
-//     else if(timer < 400 && moves < 25){
-//        return "great"
-//     }
-//     else{
-//        return "you won! you can do it faster next time"
-//     }
-// }
+setInterval(stopWatch,1000)//calling the s
 let createCard = () => {
     // let arr = [];
 for(i in shufarray){
@@ -77,7 +79,6 @@ for(i in shufarray){
     card.className = "cardBack";
     card.id = i;
     card.innerText = "?";
-    // card.addEventListener("click",flip(Event))
     img = document.createElement("img");
     img.src = shufarray[i].imgSrc;
     card.src = shufarray[i].imgSrc;
@@ -85,24 +86,21 @@ for(i in shufarray){
     card.onclick = handleClick;
     board = document.getElementById("board");
     if(cardAmount == "48"){
-         board.style.height = "97%";
+        board.style.height = "97%";
         board.style.gap = "1%";
-        board.style.marginTop = "-29.3%"
+        board.style.marginTop = "-28.6%"
         board.style.flexDirection = "row"
         card.style.width = "11%";
         card.style.height = "15.35%";
         card.style.margin = "0";
         card.style.fontSize = "80px";
-        // backCardClass = document.querySelector(".cardBack")
     }
     card.append(img);
-    //card.('click',funOnClick)
-    board.append(card)
-    // document.getElementById("board").append(card)
+    board.append(card);
 }
 }
-createCard()
-let flippedArr = [] //arr that gets the flipped cards
+createCard();
+let flippedArr = []; //arr that gets the flipped cards
 function flip(event){
     card = event.target;
     card.className = "cardFront";
@@ -119,16 +117,19 @@ function flip(event){
            document.querySelectorAll(".cardBack").forEach(card => {
                 card.onclick = null
            });
-           card2 = document.getElementById(flippedArr[0])
+           card2 = document.getElementById(flippedArr[0]);
            setTimeout( () => {
-           img.className = "backPhotos"
-           card.className = "cardBack"
-           card2.className = "cardBack"
-           card.style.fontSize = "80px", card2.style.fontSize = "80px";/* */
-           card2.querySelector("img").className = "backPhotos"
-           document.querySelectorAll(".cardBack").forEach(ard => {
-           ard.onclick = handleClick;
-           console.log(ard.onclick)
+           img.className = "backPhotos";
+           card.className = "cardBack";
+           card2.className = "cardBack";
+           if(cardAmount == "48"){
+           card.style.fontSize = "80px", card2.style.fontSize = "80px";}/* */
+           else{
+            card.style.fontSize = "100px", card2.style.fontSize = "100px";
+           }
+           card2.querySelector("img").className = "backPhotos";
+           document.querySelectorAll(".cardBack").forEach(card => {
+           card.onclick = handleClick;
             })
            },800)
         }
@@ -140,14 +141,26 @@ function flip(event){
                 //you won! again?
             }
         }
-        flippedArr = []
+        flippedArr = [];
     }
 }
 function handleClick (Event){
-    movesCounter()
-    flip(Event)
+    if(difficulty == "nightmare"){
+        movesCounter("countingDown");
+    }
+    else{
+    movesCounter();
+    }
+    flip(Event);
+}
+function win(){
+//you won! if(cardsAmount == "48"){time - (5 - minutes) : (60 - seconds) , moves - (200 - moves)}
+//else{time - (2 - minutes) : (60 - seconds) , moves - (70 - moves)}
+    //start again(link to levels)? go to recoders?
+}
+function lose(){
+    //if(moves = 0){no moves left! you lost! 
+    ///else{no time left! you lost}
+    //start again? go to records
 }
 
-// const init =()=>{
-//     const board = document.getElementById("board")
-// }
