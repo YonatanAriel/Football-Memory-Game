@@ -14,6 +14,28 @@ body{
     -ms-user-select: none;
     user-select: none;
 }
+#game{
+    z-index: 1;
+}
+a{
+    color:black;
+}
+a:hover{
+    font-size:59.9px;
+    text-shadow: 5px 5px 10px rgba(239, 241, 239, 0.25),
+    -5px -5px 10px rgba(220, 227, 221, 0.25); 
+}
+#finishGame{
+    text-align: center;
+    font-size: 60px;
+    font-weight: bold;
+    z-index: 2;
+    text-decoration: none;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .title{
     margin-top: 1.6%;
     font-size: 60px;
@@ -31,6 +53,7 @@ body{
     margin-left: 83%;
 }
 #board {
+    /* filter: blur(5px); */
   position: fixed;
   display: flex;
   flex-wrap: wrap;
@@ -111,33 +134,9 @@ body{
     -o-user-drag: none; 
     touch-action: none; 
 }
-/* button{*/
-    /* margin-left: 1.55%; */
-   /*/* margin-left: 43.4%;
-    margin-bottom: 0%;
-    margin-top: 0%; 
-    font-family: 'Tilt Prism', cursive;
-    cursor: pointer;
-    border:none;
-    background:none;
-    font-size:30px;
-    text-align: center;
-}*/
-/*#h1Button{
-    margin-top: -4%;
-}*/
-/*button:hover{
-    font-size:29.9px;
-    text-shadow: 5px 5px 10px rgba(239, 241, 239, 0.25),
-    -5px -5px 10px rgba(220, 227, 221, 0.25); */
- /* transform: */
-/*} */
 span, .cardBack{
     color: white;
      text-shadow: 5px 5px 20px rgb(2, 2, 2),
     -5px -5px 20px rgb(1, 16, 3); 
-}
-#card0{
-    box-shadow:  5px 5px 33px #0d0d0d,
-    -5px -5px 33px #04360f;
+    /* text-shadow: 1px 1px 1px rgb(0, 0, 0, 0) */
 }

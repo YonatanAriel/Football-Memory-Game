@@ -5,14 +5,17 @@ const cardAmount = localStorage.getItem("cardAmount");
 let userChoose = cardAmount;
 let arr2 = arr1.slice(0,userChoose / 2).concat(arr1.slice(0,userChoose / 2))
 let moves = 0, seconds = 0 , minutes = 0;
+let isFuncActivated = false;//to check if lose / win func was activated
 if(difficulty == "nightmare"){
     if(cardAmount == "48"){
         moves = 200, minutes = 5, seconds = 0;    
     }
     else{
-        moves = 70, minutes = 2, seconds = 0;
+        moves = 50, minutes = 1, seconds = 20;
     }
 }
+console.log(cardAmount, difficulty)
+
 //function that suffle the second array
 function shuffle(arr) {
     for (let j = 0; j < 10 + Math.random() * 10; j++) {
@@ -39,7 +42,6 @@ function shuffle(arr) {
 // )    (זה בגלל שבלולאת פור עשיתי length * 2) נקראת הדף בכרום כותב "אוי לא" ולא טוען את הדף כל פעם שפונקציית shuffle (status breakpoint)
 //func -  makes new array made from stars in the same length of the suffle array
 let shufarray = shuffle(arr2);
-//    // setTimeout(starSuffleArr, 5000)hide() //show() delay() fadeout() //need to study "jQuery"
 //func - to count how may moves the user did
 function movesCounter(countingDown){
     if(countingDown){
@@ -48,8 +50,10 @@ function movesCounter(countingDown){
     else{
         moves++ ;
     }
-    if(moves == 0){
+    if(moves == 0 && !isFuncActivated){
         //you lost func
+        finishGame("lose", "moves");
+        isFuncActivated = true;
     }
     document.getElementById("movesText").innerText = `${moves}` ;
 }
@@ -61,6 +65,10 @@ function stopWatch(){
             minutes-- ;
         }
         seconds-- ;
+        if(minutes == 0 && seconds == 0 && !isFuncActivated){
+            finishGame("lose", "time")
+            isFuncActivated = true;
+        }
     }
     else{//set stopwatch
         if(seconds == 59){
@@ -105,7 +113,6 @@ function flip(event){
     card = event.target;
     card.className = "cardFront";
     card.style.fontSize = "0";/* */
-    // card.classList.add("cardFront","flipped")//זה הרס את האפקט!!!!
     img = document.getElementById(card.id).querySelector("img");
     img.className = "frontPhotos";
     flippedArr.push(card.id);
@@ -123,7 +130,7 @@ function flip(event){
            card.className = "cardBack";
            card2.className = "cardBack";
            if(cardAmount == "48"){
-           card.style.fontSize = "80px", card2.style.fontSize = "80px";}/* */
+           card.style.fontSize = "80px", card2.style.fontSize = "80px";}
            else{
             card.style.fontSize = "100px", card2.style.fontSize = "100px";
            }
@@ -138,7 +145,8 @@ function flip(event){
             card.onclick = null;
             card2.onclick = null;
             if(document.querySelectorAll(".cardBack").length == 0){
-                //you won! again?
+                finishGame("win");
+                isFuncActivated = true;
             }
         }
         flippedArr = [];
@@ -153,14 +161,28 @@ function handleClick (Event){
     }
     flip(Event);
 }
-function win(){
-//you won! if(cardsAmount == "48"){time - (5 - minutes) : (60 - seconds) , moves - (200 - moves)}
-//else{time - (2 - minutes) : (60 - seconds) , moves - (70 - moves)}
-    //start again(link to levels)? go to recoders?
-}
-function lose(){
-    //if(moves = 0){no moves left! you lost! 
-    ///else{no time left! you lost}
-    //start again? go to records
+function finishGame(winOrLose, movesOrTime){
+    gameDiv = document.getElementById("game");
+    lost = document.createElement("div");
+    lost.id = "finishGame";
+    lost.style.zIndex = 2;
+    restart = document.createElement("a");
+    restart.href = "levels.html" , restart.innerText = "\nrestart";
+    if(winOrLose == "lose"){
+    gameDiv.style.display = "none";
+        if(movesOrTime == "moves"){//if the user lose because he run out of moves
+            lost.innerText = `no moves left, you lost`;
+        }
+        else{//if he lose because no time left
+            lost.innerText = `no time left, you lost`;
+        }
+    }
+    else{//if the user won
+        lost.innerText = "you won!";
+        document.getElementById("board").style.filter = "blur(5px)";
+    }
+    lost.append(restart);
+    body = document.getElementsByTagName("body")[0];
+    body.append(lost);
 }
 
