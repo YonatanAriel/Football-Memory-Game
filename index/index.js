@@ -6,8 +6,8 @@ const cardAmount = localStorage.getItem("cardAmount");
 let userChoose = cardAmount;
 let arr2 = arr1.slice(0, userChoose / 2).concat(arr1.slice(0, userChoose / 2))
 let moves = 0, seconds = 0, minutes = 0;
-let isFuncActivated = false;//to check if lose / win func was activated
-console.log(difficulty);
+let isFuncActivated = false;
+
 if (difficulty == "nightmare") {
     if (cardAmount == "48") {
         moves = 200, minutes = 5, seconds = 0;
@@ -108,7 +108,6 @@ function flip(event) {
     if (flippedArr.length == 2) {
         card2 = document.getElementById(flippedArr[0]);
         if (document.getElementById(flippedArr[0]).src !== document.getElementById(flippedArr[1]).src) { 
-            //show the cards for a few seconds and then show the back
             document.querySelectorAll(".cardBack").forEach(card => {
                 card.onclick = null
             });
