@@ -1,6 +1,7 @@
-let arr1 = [{ index: "0", imgSrc: "b20.jpg" }, { index: "1", imgSrc: "b10.jpg" }, { index: "2", imgSrc: "b0.jpg" }, { index: "3", imgSrc: "b1.jpg" }, { index: "4", imgSrc: "b2.jpg" }, { index: "5", imgSrc: "b3.jpg" }, { index: "6", imgSrc: "b4.jpg" }, { index: "7", imgSrc: "b5.jpg" }, { index: "8", imgSrc: "b6.jpg" }, { index: "9", imgSrc: "b7.jpg" }, { index: "10", imgSrc: "b8.jpg" }, { index: "11", imgSrc: "b9.jpg" },
-{ index: "12", imgSrc: "b24.jpg" }, { index: "13", imgSrc: "b11.jpg" }, { index: "14", imgSrc: "b23.webp" }, { index: "15", imgSrc: "b13.jpg" }, { index: "16", imgSrc: "b14.jpg" }, { index: "17", imgSrc: "b15.jpg" }, { index: "18", imgSrc: "b16.jpg" }, { index: "19", imgSrc: "b17.jpg" }, { index: "20", imgSrc: "b18.jpg" }, { index: "21", imgSrc: "b19.jpg" }, { index: "22", imgSrc: "b21.webp" }, { index: "23", imgSrc: "b22.webp" }];
-const difficulty = localStorage.getItem("difficulty"); //if i'll do const it wouldn't let me do if(difficulty == "somthing") bacause it's shuld alwyas have the same value 
+let arr1 = [{ index: "0", imgSrc: "../photos/b20.jpg" }, { index: "1", imgSrc: "../photos/b10.jpg" }, { index: "2", imgSrc: "../photos/b0.jpg" }, { index: "3", imgSrc: "../photos/b1.jpg" }, { index: "4", imgSrc: "../photos/b2.jpg" }, { index: "5", imgSrc: "../photos/b3.jpg" }, { index: "6", imgSrc: "../photos/b4.jpg" }, { index: "7", imgSrc: "../photos/b5.jpg" }, { index: "8", imgSrc: "../photos/b6.jpg" }, { index: "9", imgSrc: "../photos/b7.jpg" }, { index: "10", imgSrc: "../photos/b8.jpg" }, { index: "11", imgSrc: "../photos/b9.jpg" },
+{ index: "12", imgSrc: "../photos/b24.jpg" }, { index: "13", imgSrc: "../photos/b11.jpg" }, { index: "14", imgSrc: "../photos/b23.webp" }, { index: "15", imgSrc: "../photos/b13.jpg" }, { index: "16", imgSrc: "../photos/b14.jpg" }, { index: "17", imgSrc: "../photos/b15.jpg" }, { index: "18", imgSrc: "../photos/b16.jpg" }, { index: "19", imgSrc: "../photos/b17.jpg" }, { index: "20", imgSrc: "../photos/b18.jpg" }, { index: "21", imgSrc: "../photos/b19.jpg" }, { index: "22", imgSrc: "../photos/b21.webp" }, { index: "23", imgSrc: "../photos/b22.webp" }];
+
+const difficulty = localStorage.getItem("difficulty");
 const cardAmount = localStorage.getItem("cardAmount");
 let userChoose = cardAmount;
 let arr2 = arr1.slice(0, userChoose / 2).concat(arr1.slice(0, userChoose / 2))
@@ -16,7 +17,6 @@ if (difficulty == "nightmare") {
     }
 }
 
-//function that suffle the second array
 function shuffle(arr) {
     for (let j = 0; j < 10 + Math.random() * 10; j++) {
         for (let i = arr.length - 1; i > 0; i--) {
@@ -28,9 +28,8 @@ function shuffle(arr) {
     return arr;
 }
 
-//func -  makes new array made from stars in the same length of the suffle array
 let shufarray = shuffle(arr2);
-//func - to count how may moves the user did
+
 function movesCounter(countingDown) {
     if (countingDown) {
         moves--;
@@ -39,15 +38,14 @@ function movesCounter(countingDown) {
         moves++;
     }
     if (moves == 0 && !isFuncActivated) {
-        //you lost func
         finishGame("lose", "moves");
         isFuncActivated = true;
     }
     document.getElementById("movesText").innerText = `${moves}`;
 }
-//stopwatch
+
 function stopWatch() {
-    if (difficulty == "nightmare") {//set timer
+    if (difficulty == "nightmare") {
         if (seconds == 0) {
             seconds = 60;
             minutes--;
@@ -58,7 +56,7 @@ function stopWatch() {
             isFuncActivated = true;
         }
     }
-    else {//set stopwatch
+    else {
         if (seconds == 59) {
             seconds = -1;
             minutes++;
@@ -68,7 +66,8 @@ function stopWatch() {
     document.getElementById("clock").innerText = `${minutes}:${seconds}`;
 }
 
-setInterval(stopWatch, 1000)//calling the s
+setInterval(stopWatch, 1000)
+
 let createCard = () => {
     for (i in shufarray) {
         card = document.createElement("div");
@@ -82,7 +81,6 @@ let createCard = () => {
         card.onclick = handleClick;
         board = document.getElementById("board");
         if (cardAmount == "48") {
-            // board.style.height = "97%";
             board.style.gap = "10px";
             board.style.flexDirection = "row"
             card.style.width = "11%";
@@ -97,7 +95,7 @@ let createCard = () => {
 
 createCard();
 
-let flippedArr = []; //arr that gets the flipped cards
+let flippedArr = []; 
 
 function flip(event) {
     card = event.target;
@@ -109,7 +107,7 @@ function flip(event) {
     card.onclick = null;
     if (flippedArr.length == 2) {
         card2 = document.getElementById(flippedArr[0]);
-        if (document.getElementById(flippedArr[0]).src !== document.getElementById(flippedArr[1]).src) { //check if the cards match
+        if (document.getElementById(flippedArr[0]).src !== document.getElementById(flippedArr[1]).src) { 
             //show the cards for a few seconds and then show the back
             document.querySelectorAll(".cardBack").forEach(card => {
                 card.onclick = null

@@ -5,7 +5,7 @@
 }
 body{
     font-family: 'Tilt Prism', cursive;
-    background-image: url("field.jpg"); 
+    background-image: url("../photos/field.jpg"); 
     background-repeat: round; 
     -webkit-user-select: none;
     -moz-user-select: none;

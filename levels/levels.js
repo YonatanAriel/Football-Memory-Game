@@ -26,9 +26,8 @@ function levelClick(event){
 function amount(event){
     cardsAmount = event.target.innerText;
     localStorage.setItem("cardAmount",cardsAmount);
-    window.location.href = "index.html";
-} 
-
+    window.location.href = "../index/index.html";
+}
 
 
 
