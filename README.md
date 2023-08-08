@@ -22,6 +22,12 @@ Choose your difficulty level and the number of cards to play with, and try to ma
 - CSS
 - JavaScript
 
+
+## **Play the Game**
+
+### [Play now!](https://64d213997503e75017e0399a--football-field-memory-game.netlify.app/levels/levels.html)
+
+
 ## Getting Started
 
 1. Clone the repository to your local machine.
