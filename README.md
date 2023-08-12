@@ -25,7 +25,7 @@ Choose your difficulty level and the number of cards to play with, and try to ma
 
 ## **Play the Game**
 
-### [Play now!](https://64d213997503e75017e0399a--football-field-memory-game.netlify.app/levels/levels.html)
+### [Play now!](https://football-field-memory-game.netlify.app/levels/levels.html)
 
 
 ## Getting Started
