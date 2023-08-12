@@ -18,7 +18,8 @@ function levelClick(event){
         instructionElement.innerText = "Cards amount"; 
         easy.innerText = "24";
         nightmare.textContent = "48";
-        levels.forEach(p => { p.style.fontSize = "100px" 
+        levels.forEach(p => { 
+            p.style.fontSize = "clamp(70px, 7.5vmax, 90px)" 
         p.onclick = amount} );    
     }, 500);
 } 

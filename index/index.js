@@ -13,7 +13,7 @@ if (difficulty == "nightmare") {
         moves = 200, minutes = 5, seconds = 0;
     }
     else {
-        moves = 77, minutes = 1, seconds = 45;
+        moves = 50, minutes = 1, seconds = 10;
     }
 }
 
@@ -66,7 +66,7 @@ function stopWatch() {
     document.getElementById("clock").innerText = `${minutes}:${seconds}`;
 }
 
-setInterval(stopWatch, 1000)
+let intervalID = setInterval(stopWatch, 1000)
 
 let createCard = () => {
     for (i in shufarray) {
@@ -152,14 +152,16 @@ function handleClick(Event) {
 }
 
 function finishGame(winOrLose, movesOrTime) {
+    clearInterval(intervalID);
     gameDiv = document.getElementById("game");
     lost = document.createElement("div");
     lost.id = "finishGame";
     lost.style.zIndex = 2;
     restart = document.createElement("a");
-    restart.href = "levels.html", restart.innerText = "\nrestart";
+    restart.href = "../index/index.html", restart.innerText = "\nrestart";
+    document.getElementById("board").style.filter = "blur(5px)";
     if (winOrLose == "lose") {
-        gameDiv.style.display = "none";
+        // gameDiv.style.display = "none";
         if (movesOrTime == "moves") {
             lost.innerText = `no moves left, you lost`;
         }
@@ -169,7 +171,6 @@ function finishGame(winOrLose, movesOrTime) {
     }
     else {
         lost.innerText = "you won!";
-        document.getElementById("board").style.filter = "blur(5px)";
     }
     lost.append(restart);
     body = document.getElementsByTagName("body")[0];
